@@ -50,7 +50,7 @@ auto pLineEdit::onChange() -> void {
 
 auto pLineEdit::_text() -> string {
   unsigned length = GetWindowTextLength(hwnd);
-  wchar_t text[length + 1];
+  wchar_t *text = (wchar_t*)alloca((length + 1) * sizeof(wchar_t));
   GetWindowText(hwnd, text, length + 1);
   text[length] = 0;
   return (const char*)utf8_t(text);

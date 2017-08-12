@@ -109,7 +109,7 @@ struct GSU {
   template<int> auto op_xor_r();
 
   //table.cpp
-  auto (GSU::*opcode_table[1024])() -> void;
+  void (GSU::*opcode_table[1024])();
   auto initialize_opcode_table() -> void;
 
   //serialization.cpp

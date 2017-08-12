@@ -114,6 +114,7 @@ auto Program::inputRumble(uint port, uint device, uint input, bool enable) -> vo
 }
 
 auto Program::dipSettings(const Markup::Node& node) -> uint {
+  return 0;
 }
 
 auto Program::path(uint group) -> string {

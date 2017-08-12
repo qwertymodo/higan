@@ -1,4 +1,8 @@
+#ifndef interface
+#define interface struct
+#endif
 #include <dsound.h>
+#undef interface
 
 struct AudioDS : Audio {
   ~AudioDS() { term(); }

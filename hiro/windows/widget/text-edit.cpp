@@ -58,7 +58,7 @@ auto pTextEdit::setWordWrap(bool wordWrap) -> void {
 
 auto pTextEdit::text() const -> string {
   unsigned length = GetWindowTextLength(hwnd);
-  wchar_t buffer[length + 1];
+  wchar_t *buffer = (wchar_t*)alloca((length + 1) * sizeof(wchar_t));
   GetWindowText(hwnd, buffer, length + 1);
   buffer[length] = 0;
   string text = (const char*)utf8_t(buffer);

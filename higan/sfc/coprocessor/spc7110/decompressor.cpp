@@ -33,7 +33,7 @@ struct Decompressor {
   }
 
   auto initialize(uint mode, uint origin) -> void {
-    for(auto& root : context) for(auto& node : root) node = {0, 0};
+    for(auto& root : context) for(auto& node : root) { node = {0, 0}; }
     bpp = 1 << mode;
     offset = origin;
     bits = 8;

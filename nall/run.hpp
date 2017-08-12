@@ -78,7 +78,7 @@ template<typename... P> inline auto invoke(const string& name, P&&... p) -> void
 
 template<typename... P> inline auto execute(const string& name, P&&... p) -> string {
   lstring argl(name, forward<P>(p)...);
-  for(auto& arg : argl) if(arg.find(" ")) arg = {"\"", arg, "\""};
+  for(auto& arg : argl) if(arg.find(" ")) { arg = {"\"", arg, "\""}; }
   string arguments = argl.merge(" ");
 
   SECURITY_ATTRIBUTES sa;
@@ -141,7 +141,7 @@ template<typename... P> inline auto execute(const string& name, P&&... p) -> str
 
 template<typename... P> inline auto invoke(const string& name, P&&... p) -> void {
   lstring argl(forward<P>(p)...);
-  for(auto& arg : argl) if(arg.find(" ")) arg = {"\"", arg, "\""};
+  for(auto& arg : argl) if(arg.find(" ")) { arg = {"\"", arg, "\""}; }
   string arguments = argl.merge(" ");
   ShellExecute(nullptr, nullptr, utf16_t(name), utf16_t(arguments), nullptr, SW_SHOWNORMAL);
 }

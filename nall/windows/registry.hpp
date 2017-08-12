@@ -3,6 +3,9 @@
 #include <nall/platform.hpp>
 #include <nall/string.hpp>
 
+#ifndef interface
+#define interface struct
+#endif
 #include <shlwapi.h>
 #undef interface
 #ifndef KEY_WOW64_64KEY

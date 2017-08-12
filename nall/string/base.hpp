@@ -158,6 +158,7 @@ public:
   inline auto operator[](int) const -> const char&;
   template<typename... P> inline auto assign(P&&...) -> type&;
   template<typename T, typename... P> inline auto append(const T&, P&&...) -> type&;
+  template<typename... P> inline auto append(const string& value, P&&... p)->string&;
   template<typename... P> inline auto append(const nall::format&, P&&...) -> type&;
   inline auto append() -> type&;
   template<typename T> inline auto _append(const stringify<T>&) -> string&;

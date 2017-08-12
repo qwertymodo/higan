@@ -6,7 +6,7 @@
   #include <OpenGL/gl3.h>
 #elif defined(DISPLAY_WINDOWS)
   #include <GL/gl.h>
-  #include <GL/glext.h>
+  #include <glext.h>
   #define glGetProcAddress(name) wglGetProcAddress(name)
 #else
   #error "ruby::OpenGL: unsupported platform"

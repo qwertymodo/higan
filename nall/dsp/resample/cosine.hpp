@@ -22,9 +22,8 @@ auto ResampleCosine::clear() -> void {
 }
 
 auto ResampleCosine::sample() -> void {
+  double *channel = (double*)alloca(dsp.settings.channels * sizeof(double));
   while(fraction <= 1.0) {
-    double channel[dsp.settings.channels];
-
     for(auto n : range(dsp.settings.channels)) {
       double a = dsp.buffer.read(n, -1);
       double b = dsp.buffer.read(n, -0);

@@ -47,7 +47,9 @@ static_assert(sizeof(uint64_t) == 8, "int64_t is not of the correct size");
 
 static_assert(sizeof(float)       >=  4, "float32_t is not of the correct size");
 static_assert(sizeof(double)      >=  8, "float64_t is not of the correct size");
+#ifdef float80_t
 static_assert(sizeof(long double) >= 10, "float80_t is not of the correct size");
+#endif
 
 using int8 = int8_t;
 using int16 = int16_t;

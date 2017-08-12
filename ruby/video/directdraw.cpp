@@ -1,8 +1,13 @@
+#ifndef interface
+#define interface struct
+#endif
 #include <ddraw.h>
+#undef interface
 
 struct VideoDD : Video {
   ~VideoDD() { term(); }
 
+  HMODULE ddrawModule = nullptr;
   LPDIRECTDRAW lpdd = nullptr;
   LPDIRECTDRAW7 lpdd7 = nullptr;
   LPDIRECTDRAWSURFACE7 screen = nullptr;
@@ -136,7 +141,14 @@ struct VideoDD : Video {
   }
 
   auto init() -> bool {
-    DirectDrawCreate(0, &lpdd, 0);
+    ddrawModule = LoadLibraryA("ddraw.dll");
+    if (!ddrawModule) return false;
+
+    auto directDrawCreateFn =
+        (decltype(&::DirectDrawCreate))(GetProcAddress(ddrawModule, "DirectDrawCreate"));
+    if (!directDrawCreateFn) return false;
+    
+    directDrawCreateFn(0, &lpdd, 0);
     lpdd->QueryInterface(IID_IDirectDraw7, (void**)&lpdd7);
     if(lpdd) { lpdd->Release(); lpdd = 0; }
 
@@ -167,5 +179,7 @@ struct VideoDD : Video {
     if(screen) { screen->Release(); screen = 0; }
     if(lpdd7) { lpdd7->Release(); lpdd7 = 0; }
     if(lpdd) { lpdd->Release(); lpdd = 0; }
+    FreeLibrary(ddrawModule);
+    ddrawModule = nullptr;
   }
 };

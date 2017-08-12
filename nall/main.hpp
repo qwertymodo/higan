@@ -24,3 +24,9 @@ namespace nall {
 auto main(int argc, char** argv) -> int {
   return nall::main(argc, argv);
 }
+
+#if defined(COMPILER_VISUALCPP)
+auto WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, PSTR pCmdLine, int /*nCmdShow*/) -> int {
+  return ::main(0, nullptr);
+}
+#endif

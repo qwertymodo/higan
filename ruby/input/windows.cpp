@@ -1,6 +1,10 @@
+#ifndef interface
+#define interface struct
+#endif
 #include <xinput.h>
 #define DIRECTINPUT_VERSION 0x0800
 #include <dinput.h>
+#undef interface
 
 #include "shared/rawinput.cpp"
 #include "keyboard/rawinput.cpp"

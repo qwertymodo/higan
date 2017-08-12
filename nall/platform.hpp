@@ -36,12 +36,16 @@ namespace Math {
 #include <sys/stat.h>
 
 #if defined(PLATFORM_WINDOWS)
+#ifndef interface
+#define interface struct
+#endif
   #include <io.h>
   #include <direct.h>
   #include <shlobj.h>
   #include <wchar.h>
   #include <winsock2.h>
   #include <ws2tcpip.h>
+#undef interface
 #else
   #include <dlfcn.h>
   #include <unistd.h>
@@ -56,6 +60,27 @@ namespace Math {
 
 #if defined(COMPILER_VISUALCPP)
   #define va_copy(dest, src) ((dest) = (src))
+
+#ifndef ssize_t
+  #define ssize_t SSIZE_T
+#endif
+
+#ifndef R_OK
+  #define R_OK 4
+#endif
+#ifndef W_OK
+  #define W_OK 2
+#endif
+#ifndef X_OK
+  #define X_OK 1
+#endif
+#ifndef F_OK
+  #define F_OK 0
+#endif
+
+#ifndef S_ISREG
+  #define S_ISREG(mode) ((mode & _S_IFREG) != 0)
+#endif
 #endif
 
 #if defined(PLATFORM_WINDOWS)

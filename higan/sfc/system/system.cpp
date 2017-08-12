@@ -105,7 +105,7 @@ auto System::load() -> void {
   }
 
   region = configuration.region;
-  if(region == Region::Autodetect) {
+  if(region() == Region::Autodetect) {
     region = (cartridge.region() == Cartridge::Region::NTSC ? Region::NTSC : Region::PAL);
   }
   expansionPort = configuration.expansionPort;
